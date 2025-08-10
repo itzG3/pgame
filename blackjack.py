@@ -67,12 +67,18 @@ def create_deck():
 
 def deal_card(deck):
     #deck = create_deck()
-
     while deck:
-        card = deck.pop()
         #print(f"Your card is {card}")
-        return card
-        
+        return deck.pop()
+def fmt(card):
+    return f"{card['rank']} of {card['suit']}"
+def fmth(hand):
+    c_hand = []
+    for card in hand:
+        v = fmt(card)
+        c_hand.append(v)
+    return c_hand
+
 # Added hand_total to evaulate a given hand and output point total
 def hand_total(hand):
     nr_aces = 0
@@ -91,48 +97,43 @@ def blackjack():
     
     while True:
         play_again = input("Are you ready to play? (y/n)").lower()
-        deck = create_deck()
+        
         if play_again == "y":
-            
+            deck = create_deck()
             ###
             dealer_cards = []
             player_cards = []
                 
             ####
             player_cards.append(deal_card(deck))
-            print(f"Your first card is: \n {player_cards[0]}")
+            print(f"Your first card is: \n {fmt(player_cards[0])}")
             dealer_cards.append(deal_card(deck))
-            print(f"Dealers face up card is: \n {dealer_cards[0]}")
+            print(f"Dealers face up card is: \n {fmt(dealer_cards[0])}")
             player_cards.append(deal_card(deck))
-            time.sleep(4)
-            print(f"Your next card is {player_cards[1]}")
+            time.sleep(2)
+            print(f"Your next card is {fmt(player_cards[1])}")
             dealer_cards.append(deal_card(deck))
 
             d_total = hand_total(dealer_cards)
             p_total = hand_total(player_cards)
-            ###
-            while True:
-
-                time.sleep(1.2)
-                #bet_ammount(credits
-                
-                ###Check for blackjack
-                if p_total == 21 and d_total == 21:
+            ### 
+            if p_total == 21 and d_total == 21:
                     print("Both have Blackjack — push (draw).")
                     break
-                elif p_total == 21:
-                    print("Blackjack! You win!")
-                    break
-                elif d_total == 21:
-                    print(f"Dealer’s cards are {dealer_cards}\nDealer has {d_total} points.\nYou lose!")
-                    break
-                                #if p_total >= 21 and d_total >= 17:
-                #    print("You win \n dealers cards were {dealer_cards}\n Your total was: {p_total}\nDealer Total was: {d_total}")
-                #    break
-                
-                
-                print(f"\nYour cards are {player_cards}")
+            elif p_total == 21:
+                print("Blackjack! You win!")
+                break
+            elif d_total == 21:
+                print(f"Dealer’s cards are {fmth(dealer_cards)}\nDealer has {d_total} points.\nYou lose!")
+                break
+            
+
+            while True:
+
+                p_total = hand_total(player_cards)
+                print(f"\nYour cards are {fmth(player_cards)}")
                 print("Your cards total is:" , p_total)
+                time.sleep(4) 
 
                 hit_stand = input("Would you like to hit or stand : ").lower()
                 
@@ -145,7 +146,7 @@ def blackjack():
                     p_total = hand_total(player_cards)
             
                     #p_total += new_card["value"]
-                    print(f"You pulled {new_card} \n  Your total is {p_total}")
+                    print(f"You pulled {fmt(new_card)} \n  Your total is {p_total}")
                     time.sleep(1.1)
                     #print(f"Your cards are {player_cards}")
                     if p_total > 21:
@@ -154,10 +155,11 @@ def blackjack():
 
 
                 elif hit_stand == "stand":
-                    print(f"Dealers card are {dealer_cards} \nDealers Total is: {d_total}")
+                    d_total = hand_total(dealer_cards)
+                    print(f"Dealers card are {fmth(dealer_cards)} \nDealers Total is: {d_total}")
                     time.sleep(1.5)
                     while d_total < 17:
-                        print(f"Dealers card are {dealer_cards} \nDealers Total is: {d_total}")
+                        print(f"Dealers card are {fmth(dealer_cards)} \nDealers Total is: {d_total}")
 
                         #Dealer deals for himself
                         new_card = deal_card(deck)
@@ -166,7 +168,7 @@ def blackjack():
                         #Dealers Total hand value
                         d_total = hand_total(dealer_cards)
                         
-                        print(f"Dealer Pulled a {new_card}\nDealers Total is: {d_total}")
+                        print(f"Dealer Pulled a {fmt(new_card)}\nDealers Total is: {d_total}")
                         time.sleep(1.5)
                         if d_total > 21:
                             print("Dealer busts you win!")
