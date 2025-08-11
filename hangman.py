@@ -30,7 +30,7 @@ def hangman():
     counter = 0
     while True:
     
-        guess = input("Guess a character: ")
+        guess = input("Guess a character: ").lower()
         
         #print(answer)
 
@@ -65,3 +65,4 @@ def hangman():
 if __name__ == "__main__":
     greethangman()
     hangman()
+    
