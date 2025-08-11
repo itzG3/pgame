@@ -111,7 +111,7 @@ def blackjack():
             print(f"Dealers face up card is: \n {fmt(dealer_cards[0])}")
             player_cards.append(deal_card(deck))
             time.sleep(2)
-            print(f"Your next card is {fmt(player_cards[1])}")
+            print(f"Your next card is: {fmt(player_cards[1])}")
             dealer_cards.append(deal_card(deck))
 
             d_total = hand_total(dealer_cards)
@@ -123,15 +123,18 @@ def blackjack():
             elif p_total == 21:
                 print("Blackjack! You win!")
                 break
+            elif p_total == 21 and d_total <= 17:
+                print("Blackjack! You win!")
+                break
             elif d_total == 21:
-                print(f"Dealer’s cards are {fmth(dealer_cards)}\nDealer has {d_total} points.\nYou lose!")
+                print(f"Dealer’s cards are: {fmth(dealer_cards)}\nDealer has blackjack.\nYou lose!")
                 break
             
 
             while True:
 
                 p_total = hand_total(player_cards)
-                print(f"\nYour cards are {fmth(player_cards)}")
+                print(f"\nYour cards are: {fmth(player_cards)}")
                 print("Your cards total is:" , p_total)
                 time.sleep(4) 
 
@@ -146,11 +149,11 @@ def blackjack():
                     p_total = hand_total(player_cards)
             
                     #p_total += new_card["value"]
-                    print(f"You pulled {fmt(new_card)} \n  Your total is {p_total}")
+                    print(f"You pulled: {fmt(new_card)} \n  Your total is : {p_total}")
                     time.sleep(1.1)
                     #print(f"Your cards are {player_cards}")
                     if p_total > 21:
-                        print("Bust you lose")
+                        print(f"Dealers Cards were {dealer_cards} \n Bust you lose!")
                         break
 
 
@@ -169,7 +172,7 @@ def blackjack():
                         d_total = hand_total(dealer_cards)
                         
                         print(f"Dealer Pulled a {fmt(new_card)}\nDealers Total is: {d_total}")
-                        time.sleep(1.5)
+                        time.sleep(2.3)
                         if d_total > 21:
                             print("Dealer busts you win!")
                             break
