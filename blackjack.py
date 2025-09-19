@@ -122,6 +122,7 @@ def blackjack():
                     break
             elif p_total == 21:
                 print("Blackjack! You win!")
+                
                 break
             elif p_total == 21 and d_total <= 17:
                 print("Blackjack! You win!")

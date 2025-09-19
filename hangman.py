@@ -11,7 +11,7 @@ def greethangman():
 def hangman():
     words = [
         "apple", "banana", "grape", "orange", "cherry", "mango", "peach", "lemon", "melon", "kiwi",
-        "zebra", "tiger", "panda", "lion", "giraffe", "monkey", "elephant", "rabbit", "kangaroo", "otter",
+              "zebra", "tiger", "panda", "lion", "giraffe", "monkey", "elephant", "rabbit", "kangaroo", "otter",
         "table", "chair", "pillow", "blanket", "window", "mirror", "curtain", "bottle", "basket", "closet",
         "python", "coding", "function", "variable", "integer", "boolean", "compile", "string", "syntax", "loop",
         "rocket", "planet", "galaxy", "astronaut", "satellite", "meteor", "spaceship", "telescope", "gravity", "universe" , "lewis"
